@@ -302,7 +302,7 @@ func TestRetrieveForNotications(t *testing.T) {
 		"teacher": "t1@gmail.com",
 		"notification": "hello world bye @s1@gmail.com @s2@gmail.com @s3@gmail.com"
 	}`)
-	req, err := http.NewRequest("POST", "/api/retrievefornotification", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/retrievefornotifications", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -329,7 +329,7 @@ func TestRetrieveForNotications(t *testing.T) {
 func TestRetrieveForNoticationsEmptyBody(t *testing.T) {
 	// Empty request body
 	var jsonBody = []byte(``)
-	req, err := http.NewRequest("POST", "/api/retrievefornotification", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/retrievefornotifications", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -356,7 +356,7 @@ func TestRetrieveForNoticationsEmptyBody(t *testing.T) {
 func TestRetrieveForNoticationsMissingNotificationField(t *testing.T) {
 	// Empty request body
 	var jsonBody = []byte(`{"teacher": "t5@gmail.com"}`)
-	req, err := http.NewRequest("POST", "/api/retrievefornotification", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/retrievefornotifications", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}

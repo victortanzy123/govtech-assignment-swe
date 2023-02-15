@@ -44,12 +44,9 @@
 #### As a teacher, I want to retrieve a list of students common to a given list of teachers (i.e. retrieve students who are registered to ALL of the given teachers).
 
 ```
-    URL - *http://localhost:12345/api/entry?id=1*
-    Method - GET
     Endpoint: GET http://localhost:8080/api/commonstudents
     Success response status: HTTP 200
     Request example 1: GET /api/commonstudents?teacher=t1%40gmail.com
-
 ```
 
 ### Suspend Student

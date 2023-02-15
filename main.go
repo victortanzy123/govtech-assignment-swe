@@ -19,7 +19,7 @@ func main() {
 	router.HandleFunc("/api/commonstudents", controller.CommonStudents).Methods("GET")
 	router.HandleFunc("/api/register", controller.RegisterStudents).Methods("POST")
 	router.HandleFunc("/api/suspend", controller.SuspendStudent).Methods("POST")
-	router.HandleFunc("/api/retrievefornotification", controller.RetrieveForNotification).Methods("POST")
+	router.HandleFunc("/api/retrievefornotifications", controller.RetrieveForNotification).Methods("POST")
 
 	fmt.Println("Connected to port 8080")
 	log.Fatal(http.ListenAndServe(":8080", router))
