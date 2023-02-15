@@ -19,7 +19,7 @@ import (
 func TestRegisterStudentValid1(t *testing.T) {
 
 	var jsonBody = []byte(`{"teacher": "t1@gmail.com","students":["s1@gmail.com","s2@gmail.com","s3@gmail.com"]}`)
-	req, err := http.NewRequest("POST", "/register", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/register", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -46,7 +46,7 @@ func TestRegisterStudentValid1(t *testing.T) {
 func TestRegisterStudentValid2(t *testing.T) {
 
 	var jsonBody = []byte(`{"teacher": "t2@gmail.com","students":["s1@gmail.com","s2@gmail.com","s3@gmail.com"]}`)
-	req, err := http.NewRequest("POST", "/register", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/register", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -74,7 +74,7 @@ func TestRegisterStudentValid2(t *testing.T) {
 func TestRegisterStudentWithInvalidBodyFormat(t *testing.T) {
 
 	var jsonBody = []byte(`{"students":["s1@gmail.com"]}`)
-	req, err := http.NewRequest("POST", "/register", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/register", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -101,7 +101,7 @@ func TestRegisterStudentWithInvalidBodyFormat(t *testing.T) {
 func TestRegisterSameStudentUnderSameTeacher(t *testing.T) {
 
 	var jsonBody = []byte(`{"teacher": "t1@gmail.com","students":["s1@gmail.com"]}`)
-	req, err := http.NewRequest("POST", "/register", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/register", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -130,7 +130,7 @@ func TestRegisterSameStudentUnderSameTeacher(t *testing.T) {
 
 // @Desc: [VALID] Retrieving common students under one teacher with correct input format and should succeed with HTTP Code 200.
 func TestGetCommonStudents1Teacher(t *testing.T) {
-	req, err := http.NewRequest("GET", "/commonstudents", nil)
+	req, err := http.NewRequest("GET", "/api/commonstudents", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -157,7 +157,7 @@ func TestGetCommonStudents1Teacher(t *testing.T) {
 
 // @Desc: [VALID] Retrieving common students under two teachers with correct input format and should succeed with HTTP Code 200.
 func TestGetCommonStudents2Teachers(t *testing.T) {
-	req, err := http.NewRequest("GET", "/commonstudents", nil)
+	req, err := http.NewRequest("GET", "/api/commonstudents", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -185,7 +185,7 @@ func TestGetCommonStudents2Teachers(t *testing.T) {
 
 // @Desc: [FAIL] Retrieving common students without specifying teacher in the query parameters, resulting in an incorrect input format and should fail with HTTP Code 400.
 func TestGetCommonStudentsInvalidTeacherQuery(t *testing.T) {
-	req, err := http.NewRequest("GET", "/commonstudents", nil)
+	req, err := http.NewRequest("GET", "/api/commonstudents", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -216,7 +216,7 @@ func TestGetCommonStudentsInvalidTeacherQuery(t *testing.T) {
 func TestSuspendStudent(t *testing.T) {
 
 	var jsonBody = []byte(`{"student": "s1@gmail.com"}`)
-	req, err := http.NewRequest("POST", "/suspend", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/suspend", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -242,7 +242,7 @@ func TestSuspendStudent(t *testing.T) {
 func TestSuspendStudentWithInvalidBodyFormat(t *testing.T) {
 
 	var jsonBody = []byte(``)
-	req, err := http.NewRequest("POST", "/suspend", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/suspend", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -268,7 +268,7 @@ func TestSuspendStudentWithInvalidBodyFormat(t *testing.T) {
 func TestSuspendAnExistingSuspendedStudent(t *testing.T) {
 
 	var jsonBody = []byte(`{"student": "s1@gmail.com"}`)
-	req, err := http.NewRequest("POST", "/suspend", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/suspend", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -302,7 +302,7 @@ func TestRetrieveForNotications(t *testing.T) {
 		"teacher": "t1@gmail.com",
 		"notification": "hello world bye @s1@gmail.com @s2@gmail.com @s3@gmail.com"
 	}`)
-	req, err := http.NewRequest("POST", "/retrievefornotification", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/retrievefornotification", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -329,7 +329,7 @@ func TestRetrieveForNotications(t *testing.T) {
 func TestRetrieveForNoticationsEmptyBody(t *testing.T) {
 	// Empty request body
 	var jsonBody = []byte(``)
-	req, err := http.NewRequest("POST", "/retrievefornotification", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/retrievefornotification", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -356,7 +356,7 @@ func TestRetrieveForNoticationsEmptyBody(t *testing.T) {
 func TestRetrieveForNoticationsMissingNotificationField(t *testing.T) {
 	// Empty request body
 	var jsonBody = []byte(`{"teacher": "t5@gmail.com"}`)
-	req, err := http.NewRequest("POST", "/retrievefornotification", bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", "/api/retrievefornotification", bytes.NewBuffer(jsonBody))
 	if err != nil {
 		t.Fatal(err)
 	}
