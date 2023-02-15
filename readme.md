@@ -1,4 +1,4 @@
-# GovTech - Golang Assignment
+# GovTech - Golang Assignment (Full Name: Tan Zuu-Yuaan@Victor Tan)
 
 ## How to run the application
 
